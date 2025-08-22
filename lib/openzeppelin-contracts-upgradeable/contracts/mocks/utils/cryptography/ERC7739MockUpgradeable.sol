@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.24;
+pragma solidity ^0.8.20;
 
+import {ECDSA} from "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 import {ERC7739Upgradeable} from "../../../utils/cryptography/signers/draft-ERC7739Upgradeable.sol";
 import {SignerECDSAUpgradeable} from "../../../utils/cryptography/signers/SignerECDSAUpgradeable.sol";
 import {SignerP256Upgradeable} from "../../../utils/cryptography/signers/SignerP256Upgradeable.sol";

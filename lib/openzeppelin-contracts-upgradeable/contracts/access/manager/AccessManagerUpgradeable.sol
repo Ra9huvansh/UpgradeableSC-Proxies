@@ -10,7 +10,6 @@ import {ContextUpgradeable} from "../../utils/ContextUpgradeable.sol";
 import {MulticallUpgradeable} from "../../utils/MulticallUpgradeable.sol";
 import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
 import {Time} from "@openzeppelin/contracts/utils/types/Time.sol";
-import {Hashes} from "@openzeppelin/contracts/utils/cryptography/Hashes.sol";
 import {Initializable} from "../../proxy/utils/Initializable.sol";
 
 /**
@@ -779,6 +778,6 @@ contract AccessManagerUpgradeable is Initializable, ContextUpgradeable, Multical
      * @dev Hashing function for execute protection
      */
     function _hashExecutionId(address target, bytes4 selector) private pure returns (bytes32) {
-        return Hashes.efficientKeccak256(bytes32(uint256(uint160(target))), selector);
+        return keccak256(abi.encode(target, selector));
     }
 }

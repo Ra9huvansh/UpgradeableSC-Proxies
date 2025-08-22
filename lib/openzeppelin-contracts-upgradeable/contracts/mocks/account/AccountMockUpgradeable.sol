@@ -1,12 +1,13 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.26;
+pragma solidity ^0.8.27;
 
 import {Account} from "@openzeppelin/contracts/account/Account.sol";
 import {AccountERC7579Upgradeable} from "../../account/extensions/draft-AccountERC7579Upgradeable.sol";
 import {AccountERC7579HookedUpgradeable} from "../../account/extensions/draft-AccountERC7579HookedUpgradeable.sol";
 import {ERC721HolderUpgradeable} from "../../token/ERC721/utils/ERC721HolderUpgradeable.sol";
 import {ERC1155HolderUpgradeable} from "../../token/ERC1155/utils/ERC1155HolderUpgradeable.sol";
+import {ERC4337Utils} from "@openzeppelin/contracts/account/utils/draft-ERC4337Utils.sol";
 import {ERC7739Upgradeable} from "../../utils/cryptography/signers/draft-ERC7739Upgradeable.sol";
 import {ERC7821} from "@openzeppelin/contracts/account/extensions/draft-ERC7821.sol";
 import {MODULE_TYPE_VALIDATOR} from "@openzeppelin/contracts/interfaces/draft-IERC7579.sol";
@@ -15,7 +16,6 @@ import {AbstractSigner} from "@openzeppelin/contracts/utils/cryptography/signers
 import {SignerECDSAUpgradeable} from "../../utils/cryptography/signers/SignerECDSAUpgradeable.sol";
 import {SignerP256Upgradeable} from "../../utils/cryptography/signers/SignerP256Upgradeable.sol";
 import {SignerRSAUpgradeable} from "../../utils/cryptography/signers/SignerRSAUpgradeable.sol";
-import {SignerWebAuthnUpgradeable} from "../../utils/cryptography/signers/SignerWebAuthnUpgradeable.sol";
 import {SignerERC7702} from "@openzeppelin/contracts/utils/cryptography/signers/SignerERC7702.sol";
 import {SignerERC7913Upgradeable} from "../../utils/cryptography/signers/SignerERC7913Upgradeable.sol";
 import {MultiSignerERC7913Upgradeable} from "../../utils/cryptography/signers/MultiSignerERC7913Upgradeable.sol";
@@ -80,22 +80,6 @@ abstract contract AccountRSAMockUpgradeable is Initializable, Account, SignerRSA
     }
 
     function __AccountRSAMock_init_unchained() internal onlyInitializing {
-    }
-    /// @inheritdoc ERC7821
-    function _erc7821AuthorizedExecutor(
-        address caller,
-        bytes32 mode,
-        bytes calldata executionData
-    ) internal view virtual override returns (bool) {
-        return caller == address(entryPoint()) || super._erc7821AuthorizedExecutor(caller, mode, executionData);
-    }
-}
-
-abstract contract AccountWebAuthnMockUpgradeable is Initializable, Account, SignerWebAuthnUpgradeable, ERC7739Upgradeable, ERC7821, ERC721HolderUpgradeable, ERC1155HolderUpgradeable {
-    function __AccountWebAuthnMock_init() internal onlyInitializing {
-    }
-
-    function __AccountWebAuthnMock_init_unchained() internal onlyInitializing {
     }
     /// @inheritdoc ERC7821
     function _erc7821AuthorizedExecutor(

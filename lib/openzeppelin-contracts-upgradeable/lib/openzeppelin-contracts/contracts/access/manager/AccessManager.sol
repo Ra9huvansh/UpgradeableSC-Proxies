@@ -10,7 +10,6 @@ import {Context} from "../../utils/Context.sol";
 import {Multicall} from "../../utils/Multicall.sol";
 import {Math} from "../../utils/math/Math.sol";
 import {Time} from "../../utils/types/Time.sol";
-import {Hashes} from "../../utils/cryptography/Hashes.sol";
 
 /**
  * @dev AccessManager is a central contract to store the permissions of a system.
@@ -736,6 +735,6 @@ contract AccessManager is Context, Multicall, IAccessManager {
      * @dev Hashing function for execute protection
      */
     function _hashExecutionId(address target, bytes4 selector) private pure returns (bytes32) {
-        return Hashes.efficientKeccak256(bytes32(uint256(uint160(target))), selector);
+        return keccak256(abi.encode(target, selector));
     }
 }

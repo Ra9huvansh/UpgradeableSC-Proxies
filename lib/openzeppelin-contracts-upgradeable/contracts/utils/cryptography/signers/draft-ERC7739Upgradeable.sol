@@ -1,13 +1,14 @@
 // SPDX-License-Identifier: MIT
 // OpenZeppelin Contracts (last updated v5.4.0) (utils/cryptography/signers/draft-ERC7739.sol)
 
-pragma solidity ^0.8.24;
+pragma solidity ^0.8.20;
 
 import {AbstractSigner} from "@openzeppelin/contracts/utils/cryptography/signers/AbstractSigner.sol";
 import {EIP712Upgradeable} from "../EIP712Upgradeable.sol";
 import {ERC7739Utils} from "@openzeppelin/contracts/utils/cryptography/draft-ERC7739Utils.sol";
 import {IERC1271} from "@openzeppelin/contracts/interfaces/IERC1271.sol";
 import {MessageHashUtils} from "@openzeppelin/contracts/utils/cryptography/MessageHashUtils.sol";
+import {ShortStrings} from "@openzeppelin/contracts/utils/ShortStrings.sol";
 import {Initializable} from "../../../proxy/utils/Initializable.sol";
 
 /**
