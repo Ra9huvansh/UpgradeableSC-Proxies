@@ -22,7 +22,11 @@ contract UpgradeBox is Script {
 
     function upgradeBox(address proxyAddress, address newBox) public returns (address) {
         vm.startBroadcast();
+        // We're unable to call a function on an address provided as a parameter here, but by wrapping the 
+        // address in BoxV1 (which needs to be imported), we provide our function the ABI necessary to reference 
+        // the upgradeTo function within the proxy address.
         BoxV1 proxy = BoxV1(proxyAddress);
+
         proxy.upgradeToAndCall(address(newBox), ""); // proxy contract now points to this new address
         vm.stopBroadcast();
         return address(proxy);
