@@ -11,7 +11,7 @@ import {BoxV2} from "../src/BoxV2.sol";
 contract DeployAndUpgradeTest is Test {
     DeployBox public deployer;
     UpgradeBox public upgrader;
-    address public OWNER = makeAddr("owner");
+    address public OWNER = makeAddr("owner"); // not being used
 
     address public proxy;
 
